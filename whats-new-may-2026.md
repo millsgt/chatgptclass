@@ -1,6 +1,6 @@
-# What's New: ChatGPT + GitHub Copilot (Oct 2025 -- Mar 2026)
+# What's New: ChatGPT + GitHub Copilot (Oct 2025 -- May 2026)
 
-> Quick-scan timeline for the March 2026 course delivery. All entries are confirmed releases.
+> Quick-scan timeline for the May 2026 course delivery. All entries are confirmed releases.
 
 ---
 
@@ -168,24 +168,90 @@
 | Mar 2 | **Gemini 3 Pro + GPT-5.1 deprecation** | Announced deprecation for Gemini 3 Pro and GPT-5.1 ([changelog](https://github.blog/changelog/2026-03-02-upcoming-deprecation-of-gemini-3-pro-and-gpt-5-1-models/)) |
 | Mar 4 | **Copilot Memory on by default** | Enabled for all Pro/Pro+ users, no longer opt-in ([changelog](https://github.blog/changelog/2026-03-04-copilot-memory-now-on-by-default-for-pro-and-pro-users-in-public-preview/)) |
 | Mar 4 | **Grok Code Fast 1** | xAI model added to Copilot Free auto model selection ([changelog](https://github.blog/changelog/2026-03-04-grok-code-fast-1-is-now-available-in-copilot-free-auto-model-selection/)) |
+| Mar 5 | **GPT-5.4 / 5.4 Thinking / 5.4 Pro** | OpenAI's first mainline reasoning model with frontier GPT-5.3-codex coding skills; 1M context in API ([blog](https://openai.com/index/introducing-gpt-5-4/)) |
+| Mar 17 | **GPT-5.4 mini and nano** | Most capable small models from OpenAI; optimized for coding and subagents ([blog](https://openai.com/index/introducing-gpt-5-4-mini-and-nano/)) |
+
+---
+
+## April 2026
+
+### ChatGPT / OpenAI
+| Date | What | Details |
+|------|------|---------|
+| Apr 9 | **$100 ChatGPT Pro plan** | New mid-tier between Plus and Pro Max. 5x Codex vs Plus. Launch promo through May 31 ran 10x Codex ([story](https://thenextweb.com/news/openais-new-100-chatgpt-pro-plan-targets-claude-max-with-five-times-the-codex-access)) |
+| Apr 21 | **ChatGPT Images 2.0** | New image model, surprisingly good at rendering text inside images ([story](https://techcrunch.com/2026/04/21/chatgpts-new-images-2-0-model-is-surprisingly-good-at-generating-text/)) |
+| Apr 23 | **GPT-5.5 + GPT-5.5 Pro** | Released to paid subscribers; five reasoning levels (none/low/medium/high/xhigh); strongest agentic coding model from OpenAI ([blog](https://openai.com/index/introducing-gpt-5-5/)) |
+| Apr 24 | **GPT-5.5 in API** | gpt-5.5 at $5/$30 per Mtok; gpt-5.5-pro at $30/$180 per Mtok |
+| Apr 26 | **Sora 2 discontinued globally** | OpenAI shut down Sora 2 worldwide. EU/UK never got official access |
+
+### GitHub Copilot
+| Date | What | Details |
+|------|------|---------|
+| Apr 8 | **VS Code v1.110 February release blog** | Agent inline diffs in chat ([changelog](https://github.blog/changelog/2026-04-08-github-copilot-in-visual-studio-code-march-releases/)) |
+| Apr 30 | **Visual Studio April update** | Cloud agent sessions launch from IDE; custom agents at user level; **Debugger agent** validates fixes against live runtime ([changelog](https://github.blog/changelog/2026-04-30-github-copilot-in-visual-studio-april-update/)) |
+| Apr 2026 | **VS Code v1.116** | Agent debug logs, CLI thinking-effort controls, terminal agent tools, built-in Copilot (no separate extension install) |
+| Apr 2026 | **VS Code v1.117** | Bring-your-own-key for Business/Enterprise; smoother incremental chat rendering |
+| Apr 2026 | **Codex browser verification** | Codex CLI/app can drive the in-app browser to click through rendered UIs, reproduce visual bugs, verify local fixes |
+
+### MCP Ecosystem
+| Date | What | Details |
+|------|------|---------|
+| Apr 2-3 | **MCP Dev Summit NYC** | AAIF-hosted; ~1,200 attendees |
+| Apr 2026 | **MCP Apps (SEP-1865) formalized** | Standard for interactive UIs delivered from MCP servers via `ui://` scheme; sandboxed iframes; bi-directional JSON-RPC. Co-developed by Anthropic + OpenAI ([spec](https://modelcontextprotocol.io/community/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)) |
+
+### Anthropic
+| Date | What | Details |
+|------|------|---------|
+| Apr 16 | **Claude Opus 4.7** | 3x image resolution (2,576px, 3.75 MP), vision verification, follows instructions more literally, new **xhigh** effort level ([blog](https://www.anthropic.com/news/claude-opus-4-7)) |
+
+---
+
+## May 2026
+
+### ChatGPT / OpenAI
+| Date | What | Details |
+|------|------|---------|
+| May 5 | **GPT-5.5 Instant becomes ChatGPT default** | Replaces GPT-5.3 Instant; 52.5% fewer hallucinations on legal/medical/finance prompts; same low latency; fewer gratuitous emoji. Available in API as `chat-latest` ([blog](https://openai.com/index/gpt-5-5-instant/)) |
+| May 2026 | **Memory Sources** | All ChatGPT plans now show which saved memories, past chats, or files shaped each response. Delete specific sources individually |
+| May 2026 | **Codex mobile app preview** | Stay connected to active Codex work from phone while it continues on a connected Mac |
+| May 2026 | **File library expansion** | Free and Go users (including EEA) now get the File library |
+| May 2026 | **Inline images for Free users** | Free tier sees more embedded web images for people, places, and products |
+| May 15 | **Personal Finance preview** | US Pro users: connect 12,000+ financial institutions via Plaid (Schwab, Fidelity, Chase, Robinhood, Amex, Capital One). Money dashboard + grounded finance Q&A + Financial memories ([blog](https://openai.com/index/personal-finance-chatgpt/)) |
+
+### GitHub Copilot
+| Date | What | Details |
+|------|------|---------|
+| May 6 | **VS Code April releases blog** | Aggregated April changelog covering v1.116-v1.119 features ([changelog](https://github.blog/changelog/2026-05-06-github-copilot-in-visual-studio-code-april-releases/)) |
+| May 2026 | **VS Code v1.118** | Remote control for CLI sessions from github.com or mobile; **semantic codebase search**; chat history → standup reports |
+| May 2026 | **VS Code v1.119** | Experimental **`/chronicle`**: query chat history for files touched and PRs referenced. Agents gain inline diffs, browser tab sharing, terminal read/write |
+| May 14 | **Copilot CLI 1.0.48** | Model picker now displays actual token prices instead of dot indicators |
+| May 15 | **Grok Code Fast 1 deprecated** | Removed across Chat, inline edits, ask/agent modes, and completions |
+
+### Anthropic
+| Date | What | Details |
+|------|------|---------|
+| ~May 2026 | **Claude Sonnet 4.8** | New mid-tier default (post-Opus 4.7 cadence). Vision upgrades, better coding benchmarks, higher-res image support |
 
 ---
 
 ## Key Themes
 
-1. **Agent ecosystems** -- GitHub became "Agent HQ"; coding agents from 5+ vendors; CLI went GA
-2. **MCP everywhere** -- Standard adopted by all major players; donated to Linux Foundation; 1,860+ servers
-3. **Model velocity** -- GPT-5.2 -> 5.3; Claude 4.5 -> 4.6; constant deprecation cycles
-4. **Enterprise governance** -- Agent Control Plane GA; audit logging; MCP allowlists; metrics dashboards
-5. **CLI parity** -- Both Codex CLI and Copilot CLI now GA; terminal-based agentic coding is mainstream
-6. **Monetization shift** -- ChatGPT Go ($8/mo) bridges free and Plus; ads arriving in free tiers; $110B funding at $730B
+1. **GPT-5.5 era** -- 5.5 Instant became default May 5; 5.5 Pro flagship; xhigh reasoning mode; +52% hallucination reduction on high-stakes prompts
+2. **Pricing realignment** -- $100 ChatGPT Pro slots between $20 Plus and $200 Pro Max, explicitly targeting Claude Max
+3. **MCP UI standardization** -- SEP-1865 (MCP Apps) makes interactive UIs first-class; servers ship React/HTML components into chat hosts; 2,000+ servers
+4. **Agent terminal access + remote control** -- Copilot agents read/write any open terminal; CLI sessions controllable from github.com and GitHub Mobile
+5. **Memory becomes legible** -- ChatGPT Memory Sources + Copilot Memory on by default; both make implicit context inspectable and editable
+6. **Sora 2 sunset (Apr 26)** -- first major OpenAI product retirement of 2026; teaches the risk of building demos on rapidly evolving products
+7. **Agent ecosystems mature** -- GitHub "Agent HQ" + Mission Control + Agents tab; Visual Studio Debugger agent; Codex browser verification; BYOK for Business/Enterprise
 
 ## Upcoming Deprecations
 
 | What | Sunset Date | Migrate To |
 |------|-------------|-----------|
-| Realtime API Beta | March 24, 2026 | Realtime API GA |
-| GPT-5.2 Instant | June 3, 2026 | GPT-5.3 Instant |
+| Grok Code Fast 1 (in Copilot) | **Already removed May 15, 2026** | Auto-select / Claude Haiku 4.5 |
+| GPT-5.2 Instant | June 3, 2026 | GPT-5.3 Instant or GPT-5.5 Instant |
+| GPT-5.3 Instant | ~August 2026 (3 months post-May 5) | GPT-5.5 Instant |
 | Assistants API Beta | August 26, 2026 | Responses API + Conversations API |
+| Realtime API Beta | Already sunset March 24, 2026 | Realtime API GA |
 | Gemini 3 Pro (in Copilot) | TBD | Gemini 3.1 Pro |
 | GPT-5.1 (in Copilot) | TBD | GPT-5.2+ |

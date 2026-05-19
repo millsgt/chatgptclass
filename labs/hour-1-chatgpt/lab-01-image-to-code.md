@@ -8,7 +8,7 @@ Create a ChatGPT Project with HR data, build a custom "HR Assistant" GPT, and te
 
 ## Prerequisites
 
-- ChatGPT Plus or Pro subscription (GPT-5.2 access)
+- ChatGPT Plus or Pro subscription (GPT-5.5 access)
 - File: `datasets/Human Resources/HRIS.csv` (employee records with department, salary, location, hire date, etc.)
 
 ---

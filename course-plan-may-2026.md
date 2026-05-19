@@ -1,4 +1,4 @@
-# ChatGPT + GitHub Copilot in 4 Hours -- March 2026
+# ChatGPT + GitHub Copilot in 4 Hours -- May 2026
 
 > Presenter run sheet. Each segment is ~50 minutes with a 10-minute break between.
 
@@ -9,7 +9,7 @@
 | Segment | Name | What You Cover |
 |---------|------|----------------|
 | **1** | **ChatGPT Power User** | Tiers, Projects, Tasks, Canvas, Custom GPTs, ChatGPT Agent |
-| **2** | **ChatGPT for Builders** | Codex, Deep Research, Data Analysis, Sora 2, Codex CLI |
+| **2** | **ChatGPT for Builders** | Codex, Deep Research, Data Analysis, Images 2.0, Codex CLI |
 | **3** | **Copilot in the Editor** | Tiers, models, inline suggestions, Ask/Edit/Agent/Plan modes, custom instructions |
 | **4** | **Copilot Beyond the Editor** | MCP, Copilot CLI, coding agent (@copilot), enterprise governance |
 
@@ -23,19 +23,20 @@ Open chatgpt.com/pricing. Walk through the table live.
 
 | Tier | Price | Highlights |
 |------|-------|-----------|
-| Free | $0 | GPT-5.3 Instant, 2 images/day, basic memory (ads coming) |
-| Go | $8/mo | 10x messages, file uploads, custom GPTs, longer memory (ads coming) |
-| Plus | $20/mo | GPT-5.2, o3, Deep Research 25/mo, Sora 2, Tasks 40/mo, Advanced Voice |
-| Pro | $200/mo | Unlimited, o3-pro, 2M context, 1080p Sora, Tasks unlimited, Pulse dashboard |
+| Free | $0 | GPT-5.5 Instant, 2 images/day, basic memory, inline web images, ads in US |
+| Go | $8/mo | 10x messages, file uploads, custom GPTs, File library, longer memory |
+| Plus | $20/mo | GPT-5.5, GPT-5.5 Thinking, Deep Research 25/mo, Tasks 40/mo, Advanced Voice |
+| **Pro (new tier)** | **$100/mo** | **5x Codex vs Plus, unlimited GPT-5.5 Instant + Thinking, GPT-5.5 Pro** |
+| Pro Max | $200/mo | Everything in Pro + 10x Codex, o3-pro, 2M context, Pulse, Personal Finance preview (US) |
 | Team | $25-30/user | Admin controls, shared workspaces |
-| Enterprise | Custom | SSO/SCIM, data controls |
+| Enterprise | Custom | SSO/SCIM, data controls, Frontier platform |
 
 Quick model overview -- show the model picker dropdown:
-- **GPT-5.3 Instant** = new default (March 2026)
-- **GPT-5.2 / 5.2 Pro** = flagship reasoning
-- **GPT-5.3-Codex** = best coding model
-- **o3 / o3-pro** = deep reasoning
-- Retired Feb 13: GPT-4o, GPT-4.1, o4-mini
+- **GPT-5.5 Instant** = new default (May 5, 2026); 52.5% fewer hallucinations vs 5.3 on legal/medical/finance, same low latency
+- **GPT-5.5 / 5.5 Pro** = flagship; xhigh reasoning mode; API $5/$30 (5.5), $30/$180 (5.5-pro)
+- **GPT-5.4 Thinking / 5.4 Pro** = mainline reasoning, 1M context window in API
+- **GPT-5.3-Codex / 5.3-Codex-Spark** = coding workhorse (Codex CLI default is `codex-1`)
+- **Retired Feb 13:** GPT-4o, GPT-4.1, o4-mini. **Retiring ~August 2026:** GPT-5.3 Instant
 
 ### SHOW: Canvas (5 min)
 
@@ -57,6 +58,8 @@ Create a new Project live:
 5. Show "Branch in new chat" to split a conversation
 
 > Projects available to ALL tiers including Free. Connect Google Drive / OneDrive.
+>
+> **Memory Sources** (May 2026, all plans): every response now shows what context shaped it -- saved memories, past chats, files. Delete specific sources without wiping history.
 
 ### SHOW: Tasks (5 min)
 
@@ -82,6 +85,7 @@ In the same Project:
 1. Type `/agent` in any chat
 2. Show browser automation -- "Go to weather.com and get the forecast for Nashville"
 3. Mention: 100+ MCP app connections, available Plus/Pro/Team/Enterprise/Edu
+4. **Codex mobile app preview** (May 2026): stay connected to running Codex tasks from phone while work continues on a connected Mac
 
 ### LAB 1 (10 min)
 
@@ -102,14 +106,16 @@ Students do:
 2. Show an existing completed task (PR merged)
 3. Assign a GitHub issue live -- walk through the async flow
 4. While it works, explain:
-   - Powered by GPT-5.3-Codex (code + reasoning, 25% faster than 5.2)
-   - GPT-5.3-Codex-Spark for real-time coding (1000+ tokens/sec)
+   - Powered by **GPT-5.3-Codex** (still the workhorse, 25% faster than 5.2-Codex)
+   - **codex-1** is the Codex CLI default for low-latency edits
+   - **GPT-5.3-Codex-Spark** for real-time coding (1000+ tokens/sec)
    - 352K+ PRs merged at 85% success rate
    - Runs in isolated cloud sandboxes
+   - **Browser verification** (April 2026): Codex can drive the in-app browser to verify visual fixes on local servers
 
 **Access points**: chatgpt.com/codex | CLI | VS Code/Cursor/Windsurf | @codex in GitHub comments
 
-**Codex Desktop App** (macOS Feb 2, Windows Mar 3): parallel agents, isolated worktrees, reviewable diffs. 500K+ on Windows waitlist.
+**Codex apps**: **macOS** (Feb 2), **Windows** (Mar 3), **mobile preview** (May 2026). Parallel agents, isolated worktrees, reviewable diffs.
 
 ### SHOW: Deep Research (8 min)
 
@@ -119,7 +125,7 @@ Students do:
 4. Show **real-time steering**: interrupt and refine mid-research
 5. When done, show **fullscreen document viewer** and export to Word
 
-> Powered by GPT-5.2. Plus: 25/mo. Pro: 250/mo. MCP integration available.
+> Powered by GPT-5.5. Plus: 25/mo. Pro: 250/mo. MCP integration available.
 
 ### SHOW: Data Analysis (7 min)
 
@@ -129,21 +135,16 @@ Students do:
 4. Download the PowerPoint
 
 > Runs Python (pandas, matplotlib, plotly) in sandbox. Handles CSV/XLSX/JSON up to 512MB.
+>
+> **Personal Finance preview** (Pro/US, May 15, 2026): connects via Plaid to 12,000+ financial institutions (Schwab, Fidelity, Chase, Robinhood, Amex, Capital One). Money dashboard, grounded finance Q&A, Financial memories for savings goals / mortgages / planned purchases. Show the dashboard if instructor has US Pro account.
 
-### SHOW: Sora 2 (5 min)
+### SHOW: ChatGPT Images 2.0 + Inline Web Images (5 min)
 
-Quick demo if in US/Canada:
-1. Show sora.com or the ChatGPT Sora option
-2. Generate a short video from text prompt
-3. Show Remix, Styles, and Cameos features
-4. Note: NOT available in UK/EU/EEA/Switzerland
+Sora 2 was discontinued globally **April 26, 2026**. The slot it used to fill now goes to the new image stack.
 
-| | Plus | Pro |
-|---|---|---|
-| Videos/mo | 50 | 500+ unlimited |
-| Resolution | 480-720p | 1080p |
-| Duration | 15-25 sec | 15-25 sec |
-| Storyboard | No | Yes |
+1. **Images 2.0** (April 21, 2026): generate an image with on-image **text rendering** -- the long-standing weakness of diffusion models, finally usable. Prompt: "a 1970s sci-fi paperback cover with the title 'AGENT HQ' in bold serif text."
+2. **Free-tier inline images** (May 2026): when you ask about a person, place, or product, ChatGPT now embeds web images directly in the chat. Show with "What does the new Codex Windows app icon look like?"
+3. For video generation, point students at **Veo** (Google) and **Runway**. No first-party OpenAI video product in May 2026.
 
 ### SHOW: Codex CLI (5 min)
 
@@ -183,8 +184,8 @@ Open github.com/features/copilot/plans. Walk through live.
 **Model picker** (show the dropdown in VS Code):
 - **Auto-select** = 10% premium request discount (GPT-4.1, GPT-5 mini, Claude Haiku 4.5, etc.)
 - **Free models**: GPT-4.1, GPT-5 mini (no premium cost)
-- **Premium**: Claude Opus 4.6 (1M context), Claude Sonnet 4.6, GPT-5.3-Codex, Gemini 3 Pro, o3
-- **New**: Grok Code Fast 1 in Free auto-select (Mar 4, 2026)
+- **Premium**: **Claude Opus 4.7** (April 16, 3x image resolution, xhigh effort, vision verification), **Claude Sonnet 4.8** (mid-May, new default for most users), GPT-5.3-Codex, Gemini 3 Pro, o3
+- **Deprecated May 15, 2026**: Grok Code Fast 1 removed across Chat, inline edits, ask/agent modes, and completions
 
 ### SHOW: Inline Suggestions (10 min)
 
@@ -209,7 +210,7 @@ Open Copilot Chat. Demonstrate all four modes on the **same task**: "Add input v
 
 **Edit mode** (3 min): Select files, get targeted changes, review diff, accept/reject.
 
-**Agent mode** (5 min): Let it autonomously plan, edit files, run terminal commands, self-correct errors. Show Copilot Memory (preview) learning repo conventions.
+**Agent mode** (5 min): Let it autonomously plan, edit files, run terminal commands, self-correct errors. Show Copilot Memory (on by default for Pro/Pro+) learning repo conventions. **Agent terminal R/W** (April 2026): agents read and write to any open terminal, including running REPLs and interactive scripts -- demo with an active Python REPL.
 
 **Plan mode** (3 min): Get a structured implementation plan, review it, then approve to execute.
 
@@ -217,9 +218,17 @@ Open Copilot Chat. Demonstrate all four modes on the **same task**: "Add input v
 
 **Chat participants**: `@workspace`, `@terminal`, `@vscode`
 **Variables**: `#codebase`, `#editor`, `#selection`, `#file`, `#git`
-**Slash commands**: `/explain`, `/fix`, `/tests`, `/doc`, `/generate`, `/new`
+**Slash commands**: `/explain`, `/fix`, `/tests`, `/doc`, `/generate`, `/new`, **`/chronicle`** (experimental, queries your chat history)
 
-### SHOW: Custom Instructions & Agents (15 min)
+### SHOW: Semantic Search + /chronicle (5 min)
+
+VS Code v1.118+ (rolled out April-May 2026):
+
+1. **Semantic codebase search**: "find code that handles user authentication" returns matches by **meaning**, not just keywords. Compare to a regular text search to make the difference obvious.
+2. **Grep-style queries across GitHub repos and orgs**: search outside the open workspace -- great for "how do we do X in our other repos?"
+3. Experimental **`/chronicle`** in chat: "what did I work on last Tuesday?" -- queries your own chat history for files touched, PRs referenced, decisions made. Great standup-prep tool.
+
+### SHOW: Custom Instructions & Agents (10 min)
 
 Walk through the instruction hierarchy:
 
@@ -271,8 +280,9 @@ Students do:
 **Explain** (3 min):
 - "USB-C for AI" -- one standard to connect AI to any tool
 - Donated to Linux Foundation's AAIF (Dec 2025) -- co-founded by Anthropic, OpenAI, Block
-- 1,860+ servers in ecosystem. MCP Dev Summit: Apr 2-3, 2026 NYC
-- Nov 2025 spec: async Tasks, OAuth 2.1, stateless by default
+- **2,000+ servers** in ecosystem. **MCP Dev Summit NYC** (Apr 2-3, 2026) drew ~1,200 attendees
+- **Nov 2025 spec** (still current): async Tasks primitive, OAuth 2.1, statelessness by default
+- **April 2026: MCP Apps (SEP-1865)** formalized -- servers can deliver interactive React/HTML UIs to ChatGPT and Claude hosts via the `ui://` scheme, sandboxed iframes, bi-directional JSON-RPC
 
 **Demo** (7 min): Show MCP in VS Code
 1. Open `.vscode/mcp.json` -- show GitHub MCP server config
@@ -282,17 +292,18 @@ Students do:
 
 | Server | What It Does |
 |--------|-------------|
-| GitHub MCP | Issues, PRs, repos |
+| GitHub MCP | Issues, PRs, repos, **Spaces tools** |
 | Azure MCP | Azure resources via natural language |
 | Figma | Design-to-code |
 | Playwright | Test generation from DOM |
 | Postman | API platform |
+| **MCP Apps** | **Interactive UI components (forms, dashboards) rendered inside chat** |
 
 > Enterprise: org-level MCP allowlists, registry-only mode, 30-min propagation.
 
 ### SHOW: Copilot CLI (10 min)
 
-**Live terminal demo** (GA February 25, 2026):
+**Live terminal demo** (GA Feb 25, 2026; current **v1.0.48** as of May 14, 2026):
 
 ```bash
 # Install
@@ -309,10 +320,12 @@ Show these modes live:
 3. **Autopilot**: autonomous execution with no approval gates
 4. **Shell execution**: `!git log --oneline -5`
 5. **Delegation**: `/delegate` hands off to coding agent on GitHub
+6. **Remote control** (April 2026): start, steer, and stop CLI sessions from github.com or GitHub Mobile -- handy when you start a long-running task on your desktop and want to monitor from your phone
+7. **Token-priced model picker** (v1.0.48): shows actual $/M-token prices instead of dot indicators
 
 Built-in agents: Explore (codebase analysis), Task (builds/tests), Code-review
 
-> Models: Claude Sonnet 4.6 default. GPT-5 mini / GPT-4.1 included free. Built-in GitHub MCP.
+> Models: **Claude Sonnet 4.8** default (mid-May 2026). GPT-5 mini / GPT-4.1 included free. Built-in GitHub MCP.
 
 ### SHOW: Coding Agent (10 min)
 
@@ -330,7 +343,9 @@ Built-in agents: Explore (codebase analysis), Task (builds/tests), Code-review
 
 **New in 2026**: model picker, self-review, built-in security scanning, custom agents, code referencing, CLI handoff
 
-> Available: Pro, Pro+, Business, Enterprise. Claude and Codex models for Business/Pro (Feb 26, 2026).
+**Mission Control** (now lives in the **Agents tab** in every repo): assign across repos, watch real-time session logs, pause/refine/restart mid-run, jump straight into the resulting PRs -- all from one view. Demo it after the issue assignment completes.
+
+> Available: Pro, Pro+, Business, Enterprise. Claude and Codex models for Business/Pro (Feb 26, 2026). Visual Studio **Debugger agent** (April 30, 2026) validates fixes against live runtime behavior.
 
 ### SHOW: Enterprise Governance (10 min)
 
@@ -344,6 +359,8 @@ Built-in agents: Explore (codebase analysis), Task (builds/tests), Code-review
 - NOT supported in CLI, coding agent, or Agent mode
 
 **Usage Analytics**: DAU, WAU, acceptance rate, LoC, model usage, Plan mode telemetry
+
+**Bring-your-own-key (BYOK)** for Copilot **Business and Enterprise** (April 2026, VS Code v1.117): teams connect their own model providers (Azure OpenAI, Bedrock, etc.) directly in VS Code. **Group policies** restrict which domains agents can reach.
 
 **IP Indemnity**: Business & Enterprise only. Microsoft defends copyright claims.
 
@@ -378,7 +395,7 @@ Students do:
 | Tool | Type | Differentiator |
 |------|------|---------------|
 | GitHub Copilot | IDE + CLI + Agent | Native GitHub, multi-model |
-| Claude Code | CLI agent | 1M context, agent teams (Opus 4.6) |
+| Claude Code | CLI agent | 1M context, agent teams (Opus 4.7), Claude Code 2.x |
 | Codex CLI | CLI agent | Autonomous task completion |
 | Cursor | IDE (VS Code fork) | AI-first editor |
 | Windsurf | IDE | Flow-based coding |
@@ -397,3 +414,17 @@ Students do:
 | Feb 26, 2026 | Enterprise AI Controls GA, Claude/Codex for Business/Pro |
 | Mar 4, 2026 | Grok Code Fast 1 added to Copilot Free |
 | Mar 2026 | GPT-5.3 Instant + Codex + Codex-Spark released |
+| Mar 5, 2026 | GPT-5.4 / 5.4 Thinking / 5.4 Pro released |
+| Mar 17, 2026 | GPT-5.4 mini and nano released |
+| Apr 2-3, 2026 | MCP Dev Summit NYC (~1,200 attendees) |
+| Apr 9, 2026 | $100 ChatGPT Pro plan launched (5x Codex vs Plus) |
+| Apr 16, 2026 | Claude Opus 4.7 released (3x image res, xhigh effort) |
+| Apr 21, 2026 | ChatGPT Images 2.0 (text-in-image rendering) |
+| Apr 23-24, 2026 | GPT-5.5 + 5.5 Pro released (chat, then API) |
+| Apr 26, 2026 | Sora 2 discontinued globally |
+| Apr 30, 2026 | Visual Studio April update -- cloud agents from IDE, Debugger agent |
+| May 5, 2026 | **GPT-5.5 Instant becomes ChatGPT default** |
+| May 6, 2026 | VS Code April releases blog (v1.116-v1.119 features) |
+| May 14, 2026 | Copilot CLI 1.0.48 (token-priced model picker) |
+| May 15, 2026 | Grok Code Fast 1 deprecated; ChatGPT Personal Finance preview (US Pro) |
+| ~May 15, 2026 | Claude Sonnet 4.8 (new mid-tier default) |

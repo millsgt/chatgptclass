@@ -2,14 +2,14 @@
 
 <img src="assets/images/chatgpt-cover-slide.png" alt="Course Cover Slide" width="800"/>
 
-**[What's New (Oct 2025 -- Mar 2026)](whats-new-march-2026.md)** | **[Course Plan](course-plan-march-2026.md)**
+**[What's New (Oct 2025 -- May 2026)](whats-new-may-2026.md)** | **[Course Plan](course-plan-may-2026.md)**
 
 ## Repository Structure
 
 ```
 /
-├── course-plan-march-2026.md        # Current course plan (4x50min segments)
-├── warner-chatgpt-github-copilot-march-2026.pptx  # Main presentation deck
+├── course-plan-may-2026.md          # Current course plan (4x50min segments)
+├── warner-chatgpt-github-copilot-may-2026.pptx    # Main presentation deck
 │
 ├── labs/                             # Hands-on exercises by hour
 │   ├── hour-1-chatgpt/              # ChatGPT foundations
@@ -67,11 +67,11 @@
 [![Azure](https://img.shields.io/badge/Azure%20AI%20Foundry-0078D4?style=for-the-badge&logo=microsoft-azure)](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview)
 [![MCP](https://img.shields.io/badge/MCP%20Spec-000000?style=for-the-badge)](https://modelcontextprotocol.io)
 
-### Latest Features (March 2026)
-[![GPT-5.2](https://img.shields.io/badge/GPT--5.2-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/introducing-gpt-5-2/)
+### Latest Features (May 2026)
+[![GPT-5.5](https://img.shields.io/badge/GPT--5.5%20Instant-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/gpt-5-5-instant/)
 [![Copilot CLI](https://img.shields.io/badge/Copilot%20CLI%20GA-181717?style=for-the-badge&logo=github)](https://github.blog/changelog/2026-02-25-github-copilot-cli-is-now-generally-available/)
-[![Claude 4.6](https://img.shields.io/badge/Claude%20Opus%204.6-D97757?style=for-the-badge)](https://www.anthropic.com/news/claude-opus-4-6)
-[![ChatGPT Go](https://img.shields.io/badge/ChatGPT%20Go-412991?style=for-the-badge&logo=openai)](https://openai.com/index/introducing-chatgpt-go/)
+[![Claude 4.7](https://img.shields.io/badge/Claude%20Opus%204.7-D97757?style=for-the-badge)](https://www.anthropic.com/news/claude-opus-4-7)
+[![MCP Apps](https://img.shields.io/badge/MCP%20Apps%20SEP--1865-000000?style=for-the-badge)](https://modelcontextprotocol.io/community/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)
 
 ---
 
@@ -107,7 +107,8 @@
 - [Copilot Memory](https://github.blog/changelog/2026-01-15-agentic-memory-for-github-copilot-is-in-public-preview/)
 
 ### MCP (Model Context Protocol)
-- [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Specification (2025-11-25)](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Apps Extension (SEP-1865, Apr 2026)](https://modelcontextprotocol.io/community/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)
 - [MCP GitHub Repository](https://github.com/modelcontextprotocol)
 - [MCP Server Examples](https://github.com/modelcontextprotocol/servers)
 - [Azure MCP Server](https://learn.microsoft.com/azure/developer/azure-mcp-server/)
@@ -134,7 +135,7 @@
 ### Required Accounts & Software
 - **OpenAI Account**
   - [Sign up for OpenAI](https://platform.openai.com/signup)
-  - [ChatGPT Plus subscription](https://chatgpt.com/upgrade) (recommended for GPT-5.2 access)
+  - [ChatGPT Plus subscription](https://chatgpt.com/upgrade) (recommended for GPT-5.5 access)
   - [OpenAI API key setup](https://platform.openai.com/api-keys)
 
 - **GitHub Account**
