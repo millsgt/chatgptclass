@@ -16,39 +16,31 @@ The repository follows a **4-hour teaching cadence**:
 
 The current course plan lives at `course-plan-may-2026.md`. A detailed news timeline is at `whats-new-may-2026.md`. Previous plans are archived in `docs/archive/`.
 
+**Filename convention**: master files are dated per delivery (`course-plan-{month}-{year}.md`, `whats-new-{month}-{year}.md`, `warner-chatgpt-github-copilot-{month}-{year}.pptx`). Each new delivery cycle, these are renamed via `git mv` and the README header links + repo tree get updated to match. Don't create a *new* file when refreshing -- rename the existing one so history follows.
+
 ## Key File Relationships
 
 - `course-plan-may-2026.md` - Master course plan with detailed timings and content
-- `warner-chatgpt-github-copilot-may-2026.pptx` - Presentation deck (binary, matches course plan)
-- `.github/copilot-instructions.md` - Teaching example for Copilot custom instructions
-- `.github/agents/` - Custom agent definitions (teaching examples)
-- `.github/instructions/` - Path-specific instruction files (teaching examples)
-- `docs/instructor/mcp-teaching.guide.md` - MCP demo setup with 3 Python servers (calculator, weather, docs-generator)
+- `warner-chatgpt-github-copilot-may-2026.pptx` (+ `-v2.pptx`) - Presentation decks (binary, must match course plan)
+- `docs/instructor/mcp-teaching.guide.md` - MCP demo setup walkthrough
+- **Teaching artifacts (do NOT treat as project rules):** `.github/copilot-instructions.md`, `.github/agents/`, `.github/instructions/` exist as live examples students inspect during Segment 3. The content is generic Copilot-instruction guidance, not directives that govern work in this repo.
 
 ## Running Demo Code
 
-**OpenAI API examples:**
+There is **no build / lint / test framework** in this repo. Each script under `demos/` is standalone and runs on demand during teaching. Don't search for a unified test runner or `package.json` at the root -- none exists.
+
+**OpenAI API examples** (run from PowerShell on Tim's primary box; bash shown for cross-platform):
 ```bash
 export OPENAI_API_KEY="your-key"
 python demos/chatgpt/api-examples/call_openai_api.py
 ```
 
-**MCP demo servers** (require `pip install "mcp[cli]" httpx`):
-```bash
-# Calculator server
-python demos/mcp/calculator-mcp.py
-
-# Weather server (from teaching guide)
-python demos/mcp/weather-mcp.py
-
-# MCP Inspector for testing
-npx @modelcontextprotocol/inspector
-```
-
-**Weather MCP server** (Node.js):
+**Weather MCP server** (Node.js, the canonical MCP demo):
 ```bash
 cd demos/mcp/weather-server && npm install && node server.js
 ```
+
+Standalone Python MCP servers (`calculator-mcp.py`, `weather-mcp.py`) are referenced by `docs/instructor/mcp-teaching.guide.md` as build-it-live exercises -- they're authored on stage from the teaching guide, not committed. Use `npx @modelcontextprotocol/inspector` to point at any running server.
 
 **Vulnerable demo** (Docker):
 ```bash
