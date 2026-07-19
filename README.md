@@ -161,7 +161,7 @@
 - [ ] Set up GitHub account and enable 2FA
 - [ ] Install VS Code and required extensions
 - [ ] Test GitHub Copilot access (confirm subscription tier)
-- [ ] Optional: Install GitHub Copilot CLI (`npm install -g @github/copilot-cli`)
+- [ ] Optional: Install GitHub Copilot CLI (`npm install -g @github/copilot`)
 
 ### System Requirements
 - Windows 10/11, macOS 10.15+, or Linux
