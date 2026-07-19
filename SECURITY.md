@@ -23,31 +23,28 @@ To ensure you have the hook enabled:
 
 ### GitHub Actions Workflow
 
-A GitHub Actions workflow (.github/workflows/secret-scanning.yml) runs on all pull requests and pushes to main/master branches. This provides an additional layer of protection using:
+The GitHub Actions workflow at **`.github/workflows/secret-scanning.yml`** runs on pull requests and pushes to the default branch. This is the live, committed layer of protection in this repository.
 
-1. detect-secrets - For detecting a broad range of secret patterns
-2. Gitleaks - For comprehensive secret scanning with an extensive ruleset
+### Managing False Positives (recommended baseline workflow)
 
-### Managing False Positives
+This repo does not ship a `.secrets.baseline` file. If you want to adopt one to suppress verified false positives, generate it locally and commit it:
 
-If you're getting false positives with detect-secrets:
-
-1. Review the baseline file:
+1. Create the baseline:
+   ```
+   python -m detect_secrets scan > .secrets.baseline
+   ```
+2. Audit and mark false positives:
    ```
    python -m detect_secrets audit .secrets.baseline
    ```
-2. Update the baseline after verifying false positives:
+3. Re-scan against the baseline going forward:
    ```
    python -m detect_secrets scan --baseline .secrets.baseline
    ```
 
-### Common Secret Patterns
-
-See `.gitignore-patterns.txt` for a list of common patterns that may indicate secrets in your code.
-
 ### Best Practices
 
-1. **Never** commit credentials, API keys, or other secrets to the repository
-2. Use environment variables or a secure secrets manager for all sensitive values
-3. Consider using template files (e.g., `.env.example`) to document required environment variables without values
-4. Rotate any credentials that have been accidentally committed, even if removed later (Git history preserves them) 
+1. **Never** commit credentials, API keys, or other secrets to the repository.
+2. Use environment variables or a secure secrets manager for all sensitive values.
+3. Use the committed **`.env.example`** template to document required environment variables without values, then copy it to a git-ignored `.env` for local runs.
+4. Rotate any credentials that have been accidentally committed, even if removed later (Git history preserves them). 

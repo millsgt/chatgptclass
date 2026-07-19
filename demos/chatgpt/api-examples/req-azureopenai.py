@@ -1,60 +1,54 @@
+"""Call Azure OpenAI with the v1.x AzureOpenAI client.
 
-sum = 42 +
-print(sum)
+Azure OpenAI differs from OpenAI in three ways this demo highlights:
+  1. You authenticate against your own resource endpoint, not api.openai.com.
+  2. You pass a deployment name (your custom name for a deployed model) as the
+     model argument, not a public model id.
+  3. You pin an api_version.
 
-pip install --upgrade openai
+All secrets come from environment variables. Set these before running:
+  AZURE_OPENAI_ENDPOINT   e.g. https://my-resource.openai.azure.com/
+  AZURE_OPENAI_KEY        the resource key from the Azure portal
+  AZURE_OPENAI_DEPLOYMENT the deployment name you chose in Azure OpenAI Studio
+"""
 
 import os
+
 from openai import AzureOpenAI
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_KEY"),
-    api_version="2023-10-01-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+# Fail fast, and name each missing variable so the fix is obvious.
+endpoint = os.environ.get("AZURE_OPENAI_ENDPOINT")
+api_key = os.environ.get("AZURE_OPENAI_KEY")
+deployment_name = os.environ.get("AZURE_OPENAI_DEPLOYMENT")
+
+missing = [
+    name
+    for name, value in (
+        ("AZURE_OPENAI_ENDPOINT", endpoint),
+        ("AZURE_OPENAI_KEY", api_key),
+        ("AZURE_OPENAI_DEPLOYMENT", deployment_name),
     )
+    if not value
+]
+if missing:
+    raise RuntimeError(f"Missing environment variables: {', '.join(missing)}")
 
-deployment_name='REPLACE_WITH_YOUR_DEPLOYMENT_NAME' #This will correspond to the custom name you chose for your deployment when you deployed a model.
-
-# Send a completion call to generate an answer
-print('Sending a test completion job')
-start_phrase = 'Write a tagline for an ice cream shop. '
-response = client.completions.create(model=deployment_name, prompt=start_phrase, max_tokens=10)
-print(response.choices[0].text)
-
-
-
-# Old approaches
-import openai
-
-# Set your API key from Azure
-openai.api_key = "your-api-key"
-
-# Define the chat completion request
-response = openai.ChatCompletion.create(
-    model="gpt-35-turbo",  # Specify your deployment model name
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Hello world!"},
-    ],
+# api_version pins the Azure REST contract. 2024-10-21 is a current GA version;
+# check learn.microsoft.com for the latest before shipping.
+client = AzureOpenAI(
+    azure_endpoint=endpoint,
+    api_key=api_key,
+    api_version="2024-10-21",
 )
 
-# Print the response
-print(response)
-
-
-import openai
-
-# Initialize the OpenAI object with your API key
-openai_obj = openai.OpenAI(api_key="your-api-key")
-
-# Define the chat completion request
-response = openai_obj.ChatCompletion.create(
-    model="gpt-35-turbo",  # Specify your deployment model name
+print("Sending a test chat completion to Azure OpenAI...")
+response = client.chat.completions.create(
+    model=deployment_name,  # deployment name stands in for the model id on Azure
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Hello world!"},
+        {"role": "user", "content": "Write a tagline for an ice cream shop."},
     ],
+    max_tokens=32,
 )
 
-# Print the response
-print(response)
+print(response.choices[0].message.content)

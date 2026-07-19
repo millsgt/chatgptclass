@@ -25,7 +25,7 @@ Use the GitHub Copilot coding agent (GA) to resolve an issue end-to-end from wit
 3. **Watch the PR appear**
    - Navigate to **Pull Requests**. Within 1-3 minutes a new PR will appear.
    - Review the PR description -- the agent explains its plan, files changed, and test coverage.
-   - Note: the agent runs **self-review** (it critiques its own diff) and **security scanning** before marking the PR ready. The underlying model is Claude Sonnet 4.8 (mid-May 2026 default).
+   - Note: the agent runs **self-review** (it critiques its own diff) and **security scanning** before marking the PR ready. The underlying model is **Claude Sonnet 5** (GA June 30, 2026) or whatever **Auto** selects; **Auto model selection** is the default, and **Claude Opus 4.8** is available in the picker.
 
 ## Part 2 -- Review Iteration (3 min)
 

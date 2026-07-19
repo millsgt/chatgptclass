@@ -11,6 +11,8 @@ Explore the four Copilot Chat modes (Ask, Edit, Agent, Plan), configure custom i
 
 Open any Express route file (e.g., one containing `app.post` or `router.post`) and use the **same prompt** in each mode to observe the differences.
 
+> **Verify keybindings and UI against your live VS Code build.** Current VS Code is **v1.103 (July 2026)**. Shortcuts such as `Ctrl+I` (inline chat), `Ctrl+Shift+I` (Chat panel), and the `/plan` affordance move between releases and can be remapped. Confirm each against **Help > Keyboard Shortcuts** before you rely on it on stage.
+
 **Prompt to use:** `add input validation to this Express endpoint`
 
 1. **Ask mode** (`Ctrl+Shift+I` or click the chat icon)

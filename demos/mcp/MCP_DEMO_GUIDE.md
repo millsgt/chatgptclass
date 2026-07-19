@@ -4,13 +4,25 @@
 
 1. **Install the weather server dependencies:**
    ```bash
-   cd mcp-demos/weather-server
+   cd demos/mcp/weather-server
    npm install
    ```
+   This pulls in `@modelcontextprotocol/sdk` (v1.29.0) and `zod`.
 
-2. **Restart VS Code** to load the MCP configuration
+2. **Confirm the server starts:**
+   ```bash
+   node server.js
+   ```
+   Look for `Weather MCP server running on stdio` on stderr, then Ctrl+C to stop.
 
-3. **In Claude (VS Code)**, you can now use weather commands!
+3. **Inspect the tools with the MCP Inspector (optional):**
+   ```bash
+   npx @modelcontextprotocol/inspector node server.js
+   ```
+
+4. **Reload VS Code** to load the MCP configuration from `.vscode/mcp.json` (the `weather` stdio server)
+
+5. **In agent mode (Claude or Copilot)**, you can now use weather commands!
 
 ## Demo Script
 
@@ -29,9 +41,9 @@
 ## How MCP Works
 
 1. **Configuration**: `.vscode/mcp.json` tells VS Code which MCP servers to run
-2. **Server**: The Node.js server implements the MCP protocol
-3. **Tools**: The server exposes tools that Claude can call
-4. **Integration**: Claude automatically discovers and uses these tools
+2. **Server**: The Node.js server uses the modern `McpServer` class from the MCP SDK and registers tools with `server.registerTool`
+3. **Tools**: Each tool declares a `zod` inputSchema, so arguments are validated before the handler runs
+4. **Integration**: The agent automatically discovers and calls these tools over stdio
 
 ## Teaching Points
 
@@ -42,9 +54,10 @@
 
 ## Troubleshooting
 
-- If tools don't appear, restart VS Code
+- If tools don't appear, reload VS Code
 - Check the Output panel (View > Output > "MCP") for server logs
 - Ensure Node.js is installed (`node --version`)
+- If the server fails to start, re-run `npm install` in `demos/mcp/weather-server` to fetch `@modelcontextprotocol/sdk` and `zod`
 
 ## Next Steps
 

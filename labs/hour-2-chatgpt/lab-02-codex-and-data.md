@@ -1,7 +1,7 @@
 # Lab 2: Codex Cloud Agent and Data Analysis to PowerPoint
 
 ## Objective
-Use OpenAI Codex (powered by GPT-5.3-Codex) to assign a coding task from a GitHub issue, then use ChatGPT Data Analysis to turn a financial CSV into charts and export them to PowerPoint.
+Use OpenAI Codex (powered by GPT-5.3-Codex, with the GPT-5.6 family now current as of July 9, 2026) to assign a coding task from a GitHub issue, then use ChatGPT Data Analysis to turn a financial CSV into charts and export them to PowerPoint.
 
 ## Prerequisites
 - ChatGPT Plus or Pro subscription
@@ -29,10 +29,11 @@ Use OpenAI Codex (powered by GPT-5.3-Codex) to assign a coding task from a GitHu
 
 4. **Upload the dataset**
    - In a new ChatGPT conversation, upload `datasets/Financial/Wall Street Market Data - Fictional.csv`.
+   - Columns: **Symbol, Date, Open, High, Low, Close, Volume**.
 
 5. **Generate charts and export**
-   - Prompt: **"Create 3 charts showing trends in this data and export the results to a PowerPoint file."**
-   - Review the generated charts (e.g., price trends over time, volume comparison, sector breakdown).
+   - Prompt: **"Create 3 charts: closing price trend over time, daily volume, and daily returns distribution. Then export to PowerPoint."**
+   - Review the generated charts (closing price line, daily volume bars, and a histogram of daily returns).
 
 6. **Download the PowerPoint**
    - Click the download link to save the `.pptx` file.

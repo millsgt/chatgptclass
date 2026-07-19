@@ -14,20 +14,42 @@
 ### **2. Install Essential MCP Servers**
 
 **GitHub Server (30 seconds setup):**
-```bash
-# Your token is already set as TIM_GITHUB_TOKEN
-# VS Code will automatically use: ${env:TIM_GITHUB_TOKEN}
 
-# Add to VS Code settings or .vscode/mcp.json
+The old npm package `@modelcontextprotocol/server-github` is DEPRECATED. Use GitHub's official server instead. The easiest path is the hosted GitHub MCP server over HTTP.
+
+Add to `.vscode/mcp.json`. The `inputs` block prompts for a PAT at first use and stores it securely, so no token lands in the file:
+```json
 {
-  "mcp": {
-    "servers": {
-      "github": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-github"],
-        "env": {
-          "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:TIM_GITHUB_TOKEN}"
-        }
+  "inputs": [
+    {
+      "id": "github_pat",
+      "type": "promptString",
+      "description": "GitHub personal access token",
+      "password": true
+    }
+  ],
+  "servers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${input:github_pat}"
+      }
+    }
+  }
+}
+```
+
+Prefer to run it locally? Use the `github/github-mcp-server` Go binary in stdio mode:
+```json
+{
+  "servers": {
+    "github": {
+      "type": "stdio",
+      "command": "github-mcp-server",
+      "args": ["stdio"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_pat}"
       }
     }
   }
@@ -308,9 +330,13 @@ python your-server.py
 npx @modelcontextprotocol/inspector
 ```
 
-**One-Click GitHub Server:**
+**GitHub MCP server (current, not the deprecated npm package):**
 ```bash
-npx @modelcontextprotocol/server-github
+# Hosted server (no install) - point VS Code .vscode/mcp.json at:
+#   https://api.githubcopilot.com/mcp/  (type: http, Bearer PAT)
+
+# Or run the official Go binary locally in stdio mode:
+github-mcp-server stdio
 ```
 
 **Common Issues & Fixes:**
@@ -323,7 +349,7 @@ npx @modelcontextprotocol/server-github
 1. **MCP is the future** - Standardized AI integration layer
 2. **Simple to build** - FastMCP makes servers easy
 3. **Enterprise ready** - Security, scalability built-in
-4. **Ecosystem growing** - 1000+ community servers available
+4. **Ecosystem growing** - 2,000+ community servers available (MCP donated to the Linux Foundation's Agentic AI Foundation)
 5. **Career relevant** - OpenAI, Google adopting MCP standard
 
 ## **Resources for Students**

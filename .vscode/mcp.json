@@ -8,7 +8,28 @@
 			],
 			"gallery": "https://api.mcp.github.com",
 			"version": "1.0.0"
+		},
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/",
+			"headers": {
+				"Authorization": "Bearer ${input:github_pat}"
+			}
+		},
+		"weather": {
+			"type": "stdio",
+			"command": "node",
+			"args": [
+				"${workspaceFolder}/demos/mcp/weather-server/server.js"
+			]
 		}
 	},
-	"inputs": []
+	"inputs": [
+		{
+			"id": "github_pat",
+			"type": "promptString",
+			"description": "GitHub personal access token (repo scope)",
+			"password": true
+		}
+	]
 }

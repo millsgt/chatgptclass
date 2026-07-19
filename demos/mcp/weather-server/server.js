@@ -1,11 +1,21 @@
-import { Server } from '@modelcontextprotocol/sdk/server/index.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import {
-  CallToolRequestSchema,
-  ListToolsRequestSchema,
-} from '@modelcontextprotocol/sdk/types.js';
+// Minimal Model Context Protocol (MCP) server for the O'Reilly ChatGPT + GitHub Copilot course.
+//
+// This is the canonical MCP demo. It returns MOCK weather data so it always
+// works on stage with no API key and no network dependency. It uses the modern
+// high-level McpServer API from MCP TypeScript SDK v1.29.0:
+//   - McpServer            (server/mcp.js)    high-level server, auto-handles tool discovery
+//   - server.registerTool  registers a tool with a zod inputSchema
+//   - StdioServerTransport (server/stdio.js)  stdio is how VS Code and the Inspector talk to us
+//
+// Run it live:  npm install && node server.js
+// Inspect it:   npx @modelcontextprotocol/inspector node server.js
 
-// Simple weather data for demo purposes
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { z } from 'zod';
+
+// Mock weather data keyed by lowercase city name. Hardcoded on purpose so the
+// demo is deterministic and reliable in front of a live audience.
 const WEATHER_DATA = {
   'seattle': {
     temp: 55,
@@ -51,134 +61,91 @@ const WEATHER_DATA = {
   }
 };
 
-class WeatherServer {
-  constructor() {
-    this.server = new Server(
-      {
-        name: 'weather-server',
-        version: '1.0.0',
-      },
-      {
-        capabilities: {
-          tools: {},
-        },
-      }
-    );
+// The high-level server. name and version show up in the MCP handshake so
+// clients (VS Code, the Inspector) can identify us.
+const server = new McpServer({
+  name: 'weather-server',
+  version: '1.0.0'
+});
 
-    this.setupHandlers();
-  }
+// get_weather: the headline tool. The inputSchema is a plain object of zod
+// validators, which the SDK converts to a JSON Schema for the client AND uses
+// to validate incoming arguments before our handler runs, so args.city is
+// always a present string by the time we see it.
+server.registerTool(
+  'get_weather',
+  {
+    description: 'Get current weather for a city',
+    inputSchema: {
+      city: z.string().describe('The city name, for example "Seattle" or "New York"')
+    }
+  },
+  async ({ city }) => {
+    const key = city.toLowerCase();
+    const weather = WEATHER_DATA[key];
 
-  setupHandlers() {
-    // List available tools
-    this.server.setRequestHandler(ListToolsRequestSchema, async () => ({
-      tools: [
-        {
-          name: 'get_weather',
-          description: 'Get current weather for a city',
-          inputSchema: {
-            type: 'object',
-            properties: {
-              city: {
-                type: 'string',
-                description: 'The city name (e.g., "Seattle", "New York")',
-              },
-            },
-            required: ['city'],
-          },
-        },
-        {
-          name: 'list_cities',
-          description: 'List all available cities with weather data',
-          inputSchema: {
-            type: 'object',
-            properties: {},
-          },
-        },
-      ],
-    }));
-
-    // Handle tool calls
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
-      const { name, arguments: args } = request.params;
-
-      switch (name) {
-        case 'get_weather': {
-          const city = args.city?.toLowerCase();
-          
-          if (!city) {
-            return {
-              content: [
-                {
-                  type: 'text',
-                  text: 'Error: City name is required',
-                },
-              ],
-            };
+    // Graceful miss: return a helpful message instead of throwing, so the
+    // "What is the weather in Paris?" demo shows sane behavior on unknown cities.
+    if (!weather) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `Weather data not available for "${city}". Available cities: ${Object.keys(WEATHER_DATA).join(', ')}`
           }
+        ]
+      };
+    }
 
-          const weather = WEATHER_DATA[city];
-          
-          if (!weather) {
-            return {
-              content: [
-                {
-                  type: 'text',
-                  text: `Weather data not available for "${args.city}". Available cities: ${Object.keys(WEATHER_DATA).join(', ')}`,
-                },
-              ],
-            };
-          }
-
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Weather in ${args.city}:
-🌡️  Temperature: ${weather.temp}°F
-☁️  Condition: ${weather.condition}
-💧 Humidity: ${weather.humidity}%
-💨 Wind: ${weather.wind}
-📅 Forecast: ${weather.forecast}`,
-              },
-            ],
-          };
+    return {
+      content: [
+        {
+          type: 'text',
+          text: `Weather in ${city}:
+Temperature: ${weather.temp}F
+Condition: ${weather.condition}
+Humidity: ${weather.humidity}%
+Wind: ${weather.wind}
+Forecast: ${weather.forecast}`
         }
+      ]
+    };
+  }
+);
 
-        case 'list_cities': {
-          const cities = Object.keys(WEATHER_DATA)
-            .map(city => city.charAt(0).toUpperCase() + city.slice(1))
-            .join(', ');
-          
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Available cities with weather data: ${cities}`,
-              },
-            ],
-          };
+// list_cities: a zero-argument tool. An empty inputSchema object tells the SDK
+// this tool takes no parameters.
+server.registerTool(
+  'list_cities',
+  {
+    description: 'List all available cities with weather data',
+    inputSchema: {}
+  },
+  async () => {
+    const cities = Object.keys(WEATHER_DATA)
+      .map((city) => city.charAt(0).toUpperCase() + city.slice(1))
+      .join(', ');
+
+    return {
+      content: [
+        {
+          type: 'text',
+          text: `Available cities with weather data: ${cities}`
         }
-
-        default:
-          return {
-            content: [
-              {
-                type: 'text',
-                text: `Unknown tool: ${name}`,
-              },
-            ],
-          };
-      }
-    });
+      ]
+    };
   }
+);
 
-  async run() {
-    const transport = new StdioServerTransport();
-    await this.server.connect(transport);
-    console.error('Weather MCP server running on stdio');
-  }
+// Connect over stdio and start serving. We log to stderr because stdout is the
+// JSON-RPC channel, so anything printed to stdout would corrupt the protocol.
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error('Weather MCP server running on stdio');
 }
 
-// Start the server
-const server = new WeatherServer();
-server.run().catch(console.error);
+main().catch((error) => {
+  console.error('Fatal error starting weather MCP server:', error);
+  process.exit(1);
+});

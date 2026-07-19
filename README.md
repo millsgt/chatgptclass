@@ -2,14 +2,14 @@
 
 <img src="assets/images/chatgpt-cover-slide.png" alt="Course Cover Slide" width="800"/>
 
-**[What's New (Oct 2025 -- May 2026)](whats-new-may-2026.md)** | **[Course Plan](course-plan-may-2026.md)**
+**[What's New (Oct 2025 -- July 2026)](whats-new-july-2026.md)** | **[Course Plan](course-plan-july-2026.md)**
 
 ## Repository Structure
 
 ```
 /
-├── course-plan-may-2026.md          # Current course plan (4x50min segments)
-├── warner-chatgpt-github-copilot-may-2026.pptx    # Main presentation deck
+├── course-plan-july-2026.md         # Current course plan (4x50min segments)
+├── warner-chatgpt-github-copilot-july-2026.pptx   # Main presentation deck
 │
 ├── labs/                             # Hands-on exercises by hour
 │   ├── hour-1-chatgpt/              # ChatGPT foundations
@@ -67,10 +67,10 @@
 [![Azure](https://img.shields.io/badge/Azure%20AI%20Foundry-0078D4?style=for-the-badge&logo=microsoft-azure)](https://learn.microsoft.com/en-us/azure/ai-services/openai/overview)
 [![MCP](https://img.shields.io/badge/MCP%20Spec-000000?style=for-the-badge)](https://modelcontextprotocol.io)
 
-### Latest Features (May 2026)
-[![GPT-5.5](https://img.shields.io/badge/GPT--5.5%20Instant-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/gpt-5-5-instant/)
-[![Copilot CLI](https://img.shields.io/badge/Copilot%20CLI%20GA-181717?style=for-the-badge&logo=github)](https://github.blog/changelog/2026-02-25-github-copilot-cli-is-now-generally-available/)
-[![Claude 4.7](https://img.shields.io/badge/Claude%20Opus%204.7-D97757?style=for-the-badge)](https://www.anthropic.com/news/claude-opus-4-7)
+### Latest Features (July 2026)
+[![GPT-5.6](https://img.shields.io/badge/GPT--5.6%20Sol%2FTerra%2FLuna-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/gpt-5-6/)
+[![Copilot CLI](https://img.shields.io/badge/Copilot%20CLI%20v1.0.71-181717?style=for-the-badge&logo=github)](https://github.com/github/copilot-cli/releases)
+[![Claude Sonnet 5](https://img.shields.io/badge/Claude%20Sonnet%205%20GA-D97757?style=for-the-badge)](https://github.blog/changelog/2026-06-30-claude-sonnet-5-is-generally-available-for-github-copilot/)
 [![MCP Apps](https://img.shields.io/badge/MCP%20Apps%20SEP--1865-000000?style=for-the-badge)](https://modelcontextprotocol.io/community/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)
 
 ---

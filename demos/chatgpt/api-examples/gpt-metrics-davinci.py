@@ -1,41 +1,55 @@
-import openai
-import time
+"""Measure latency, token usage, and a rough cost for a single chat call.
+
+The original version of this file used the removed text-davinci-002 completion
+endpoint. It has been rewritten to the Chat Completions API. The point of the
+demo is unchanged: send one request, then report how long it took and how many
+tokens it consumed so learners can reason about latency and cost.
+
+Requires the OPENAI_API_KEY environment variable.
+"""
+
 import os
+import time
 
-# Set up OpenAI API credentials
-openai.api_key = ""
+from openai import OpenAI
 
-# Set up the prompt and parameters for the chat completion
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY is not set. Export it before running.")
+
+client = OpenAI(api_key=api_key)
+
+# gpt-5.5 is the everyday default for chat. COST_PER_TOKEN is illustrative only;
+# check current pricing at platform.openai.com/pricing before quoting numbers.
+MODEL = "gpt-5.5"
+COST_PER_TOKEN = 0.00006
+
 prompt = "Hello, how are you?"
-model = "text-davinci-002"
-temperature = 0.2
-max_tokens = 50
 
-# Calculate the prompt length
-prompt_length = len(prompt.split())
-
-# Generate the chat completion and time how long it takes
+# Time the round trip so we can show learners the wall-clock latency.
 start_time = time.time()
-response = openai.Completion.create(
-  engine=model,
-  prompt=prompt,
-  temperature=temperature,
-  max_tokens=max_tokens
+response = client.chat.completions.create(
+    model=MODEL,
+    messages=[{"role": "user", "content": prompt}],
+    temperature=0.2,
+    max_tokens=50,
 )
 end_time = time.time()
 
-# Calculate the completion length and total token length
-completion_length = len(response.choices[0].text.split())
-total_token_length = prompt_length + completion_length
-cost = total_token_length * 0.00006  # Assume a cost of $0.00006 per token
+# The SDK returns exact token counts in response.usage. Prefer these over
+# guessing from word counts; the model tokenizes differently than str.split().
+usage = response.usage
+prompt_tokens = usage.prompt_tokens
+completion_tokens = usage.completion_tokens
+total_tokens = usage.total_tokens
+cost = total_tokens * COST_PER_TOKEN
 
-# Clear the console screen
-os.system('cls' if os.name == 'nt' else 'clear')
+# Clear the console so the metrics read cleanly during a live demo.
+os.system("cls" if os.name == "nt" else "clear")
 
-# Display the response, prompt length, completion length, and total token length
-print(response.choices[0].text)
-print(f"Prompt length: {prompt_length}")
-print(f"Completion length: {completion_length}")
-print(f"Total token length: {total_token_length}")
+print(response.choices[0].message.content)
+print(f"Prompt tokens: {prompt_tokens}")
+print(f"Completion tokens: {completion_tokens}")
+print(f"Total tokens: {total_tokens}")
 print(f"Time taken: {end_time - start_time:.2f} seconds")
 print(f"Estimated cost: ${cost:.4f}")

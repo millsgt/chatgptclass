@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenAI Chatbot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <main class="chat">
+    <h1>OpenAI Chatbot</h1>
+
+    <label for="prompt">Prompt</label>
+    <textarea id="prompt" rows="3" placeholder="Ask something..."></textarea>
+
+    <button id="send" type="button">Send</button>
+
+    <label for="response">Response</label>
+    <textarea id="response" rows="8" readonly></textarea>
+  </main>
+
+  <script>
+    const sendButton = document.getElementById("send");
+    const promptBox = document.getElementById("prompt");
+    const responseBox = document.getElementById("response");
+
+    async function send() {
+      const prompt = promptBox.value.trim();
+      if (!prompt) {
+        responseBox.value = "Please enter a prompt.";
+        return;
+      }
+
+      // Disable the button while the request is in flight so a double click
+      // does not fire two calls.
+      sendButton.disabled = true;
+      responseBox.value = "Thinking...";
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt }),
+        });
+        const data = await res.json();
+        responseBox.value = data.reply || data.error || "No response.";
+      } catch (err) {
+        responseBox.value = "Request failed: " + err.message;
+      } finally {
+        sendButton.disabled = false;
+      }
+    }
+
+    sendButton.addEventListener("click", send);
+  </script>
+</body>
+</html>
