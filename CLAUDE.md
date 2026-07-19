@@ -35,10 +35,13 @@ export OPENAI_API_KEY="your-key"
 python demos/chatgpt/api-examples/call_openai_api.py
 ```
 
-**Weather MCP server** (Node.js, the canonical MCP demo):
+**Weather MCP server** (Node.js, the canonical MCP demo): mock data, no API key, so it always runs on stage.
 ```bash
 cd demos/mcp/weather-server && npm install && node server.js
 ```
+It uses the modern MCP TypeScript SDK (**`^1.29.0`**): `McpServer` + `server.registerTool` with zod input schemas, `StdioServerTransport`. The old low-level `Server` + `setRequestHandler` pattern is deprecated, so keep any rewrite on the high-level API. Logging goes to stderr because stdout carries the JSON-RPC channel. Point the Inspector at it with `npx @modelcontextprotocol/inspector node server.js`.
+
+**Pre-delivery linter** (run before every class): `pwsh scripts/utilities/preflight-check.ps1` asserts every `datasets/...` path referenced in the plan/labs resolves on disk, flags stale model/version/command tokens (it exempts dated historical-timeline rows), and blocks committed OpenAI keys. Update its `$StaleTokens` map each refresh cycle. Copy `.env.example` to `.env` for local keys; `.gitignore` excludes `.env`.
 
 Standalone Python MCP servers (`calculator-mcp.py`, `weather-mcp.py`) are referenced by `docs/instructor/mcp-teaching.guide.md` as build-it-live exercises -- they're authored on stage from the teaching guide, not committed. Use `npx @modelcontextprotocol/inspector` to point at any running server.
 
@@ -48,9 +51,16 @@ docker build -f demos/vulnerable-code/Dockerfile -t chatgpt-demo .
 docker run -p 5000:5000 chatgpt-demo
 ```
 
-## Intentionally Vulnerable Code
+## Files That Look Broken But Are Not
 
-`demos/vulnerable-code/` and `demos/security-scanning/` contain **intentionally insecure** code and outdated dependencies for security education demos. Do not "fix" these unless explicitly asked. The `requirements.txt` in `demos/vulnerable-code/` has known CVEs by design.
+- **Intentionally vulnerable:** `demos/vulnerable-code/` and `demos/security-scanning/` contain insecure code and outdated dependencies for security-education demos. Do not "fix" these unless explicitly asked. The `requirements.txt` in `demos/vulnerable-code/` has known CVEs by design.
+- **Live-completion stubs:** `demos/copilot/inline_suggestions.py`, `main.py`, and `test.py` are deliberately incomplete (a function signature with no body, a missing colon). Tim types these live and Copilot completes them on stage, so they will not compile. Leave them incomplete. When compile-checking the repo, exclude these three plus `demos/vulnerable-code/bad-python.py`.
+
+## Editing the Deck
+
+The `.pptx` is a binary that must match the course plan. Slides fall in three zones: **scaffold (~1-11)** the reusable class opener (title, bio, schedule, materials), **teaching core (~12-41)** the four segments, and **archive (~42+)** supplemental pull-outs (a slide titled "Archive / Supplemental" marks the boundary). Preserve the scaffold. Edit content-slide text in place at the run or paragraph level; never add, remove, move, or resize a shape or slide. Prove layout preservation with a semantic shape-geometry fingerprint compared before vs after across all slides (zero geometry changes is the pass bar). For speaker notes, use the `pluralsight-speaker-notes` skill (edits the notes text frame only) and route spoken-word notes through the `tim-warner-voice` skill.
+
+**Verifying links** means fetching each URL and confirming **HTTP 200 to the correct target**, not just well-formed syntax. `openai.com` and `github.com` return 403 to WebFetch and plain curl bot-checks, so use `curl -sSL -o /dev/null -w "%{http_code}" -A "<real UA>" <url>` or `gh`. A 401 on `https://api.githubcopilot.com/mcp/` is expected (auth-gated), not a break.
 
 ## Technology Landscape (July 2026)
 
