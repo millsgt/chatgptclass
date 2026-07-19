@@ -19,11 +19,11 @@ Use OpenAI Codex (powered by GPT-5.3-Codex, with the GPT-5.6 family now current 
 
 2. **Assign a GitHub issue**
    - Select a repository and pick an open issue (or create a small one such as "Add a health-check endpoint").
-   - Click **Start task** and watch the async agent begin work.
+   - Click **Start task**. The async agent starts work in the background.
    - While it runs, review a previously completed task to see the PR diff and merge status.
 
 3. **No Codex access?**
-   - Watch the instructor's live demo and note the workflow: issue assigned, sandbox spins up, branch created, PR opened.
+   - Follow the instructor's live demo and note the workflow: issue assigned, sandbox created, branch created, PR opened.
 
 ### Part B: Data Analysis to PowerPoint
 

@@ -280,7 +280,7 @@
 3. **MCP UI standardization** -- SEP-1865 (MCP Apps) makes interactive UIs first-class; servers ship React/HTML components into chat hosts; 2,000+ servers
 4. **Agent terminal access + remote control** -- Copilot agents read/write any open terminal; CLI sessions controllable from github.com and GitHub Mobile
 5. **Memory becomes legible** -- ChatGPT Memory Sources + Copilot Memory on by default; both make implicit context inspectable and editable
-6. **Sora 2 sunset (Apr 26)** -- first major OpenAI product retirement of 2026; teaches the risk of building demos on rapidly evolving products
+6. **Sora 2 sunset (Apr 26)** -- first major OpenAI product retirement of 2026; a reminder of the risk of building demos on rapidly evolving products
 7. **Agent ecosystems mature** -- GitHub "Agent HQ" + Mission Control + Agents tab; Visual Studio Debugger agent; Codex browser verification; BYOK for Business/Enterprise
 
 ## Upcoming Deprecations

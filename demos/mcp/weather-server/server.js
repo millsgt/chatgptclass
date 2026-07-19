@@ -1,11 +1,9 @@
 // Minimal Model Context Protocol (MCP) server for the O'Reilly ChatGPT + GitHub Copilot course.
 //
-// This is the canonical MCP demo. It returns MOCK weather data so it always
-// works on stage with no API key and no network dependency. It uses the modern
-// high-level McpServer API from MCP TypeScript SDK v1.29.0:
-//   - McpServer            (server/mcp.js)    high-level server, auto-handles tool discovery
-//   - server.registerTool  registers a tool with a zod inputSchema
-//   - StdioServerTransport (server/stdio.js)  stdio is how VS Code and the Inspector talk to us
+// The canonical MCP demo. It returns MOCK weather data so it runs on stage with
+// no API key and no network dependency. It uses the modern high-level McpServer
+// API from MCP TypeScript SDK v1.29.0, not the deprecated low-level Server +
+// setRequestHandler pattern.
 //
 // Run it live:  npm install && node server.js
 // Inspect it:   npx @modelcontextprotocol/inspector node server.js
@@ -14,8 +12,8 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 
-// Mock weather data keyed by lowercase city name. Hardcoded on purpose so the
-// demo is deterministic and reliable in front of a live audience.
+// Hardcoded and keyed by lowercase city name so the demo stays deterministic in
+// front of a live audience.
 const WEATHER_DATA = {
   'seattle': {
     temp: 55,
@@ -61,17 +59,16 @@ const WEATHER_DATA = {
   }
 };
 
-// The high-level server. name and version show up in the MCP handshake so
-// clients (VS Code, the Inspector) can identify us.
+// name and version appear in the MCP handshake so clients (VS Code, the
+// Inspector) can identify the server.
 const server = new McpServer({
   name: 'weather-server',
   version: '1.0.0'
 });
 
-// get_weather: the headline tool. The inputSchema is a plain object of zod
-// validators, which the SDK converts to a JSON Schema for the client AND uses
-// to validate incoming arguments before our handler runs, so args.city is
-// always a present string by the time we see it.
+// The SDK converts inputSchema (a plain object of zod validators) to a JSON
+// Schema for the client and validates incoming arguments before the handler
+// runs, so city is a present string by the time the handler reads it.
 server.registerTool(
   'get_weather',
   {
@@ -84,8 +81,8 @@ server.registerTool(
     const key = city.toLowerCase();
     const weather = WEATHER_DATA[key];
 
-    // Graceful miss: return a helpful message instead of throwing, so the
-    // "What is the weather in Paris?" demo shows sane behavior on unknown cities.
+    // Return a message instead of throwing, so the "What's the weather in
+    // Paris?" demo shows sane behavior on an unknown city.
     if (!weather) {
       return {
         content: [
@@ -113,8 +110,7 @@ Forecast: ${weather.forecast}`
   }
 );
 
-// list_cities: a zero-argument tool. An empty inputSchema object tells the SDK
-// this tool takes no parameters.
+// An empty inputSchema declares a tool that takes no parameters.
 server.registerTool(
   'list_cities',
   {
@@ -137,8 +133,8 @@ server.registerTool(
   }
 );
 
-// Connect over stdio and start serving. We log to stderr because stdout is the
-// JSON-RPC channel, so anything printed to stdout would corrupt the protocol.
+// Log to stderr because stdout carries the JSON-RPC channel; anything written
+// to stdout would corrupt the protocol.
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);

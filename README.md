@@ -68,7 +68,7 @@
 [![MCP](https://img.shields.io/badge/MCP%20Spec-000000?style=for-the-badge)](https://modelcontextprotocol.io)
 
 ### Latest Features (July 2026)
-[![GPT-5.6](https://img.shields.io/badge/GPT--5.6%20Sol%2FTerra%2FLuna-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/gpt-5-6/)
+[![GPT-5.6](https://img.shields.io/badge/GPT--5.6%20Sol%2FTerra%2FLuna-00A67E?style=for-the-badge&logo=openai)](https://openai.com/index/gpt-5-6)
 [![Copilot CLI](https://img.shields.io/badge/Copilot%20CLI%20v1.0.71-181717?style=for-the-badge&logo=github)](https://github.com/github/copilot-cli/releases)
 [![Claude Sonnet 5](https://img.shields.io/badge/Claude%20Sonnet%205%20GA-D97757?style=for-the-badge)](https://github.blog/changelog/2026-06-30-claude-sonnet-5-is-generally-available-for-github-copilot/)
 [![MCP Apps](https://img.shields.io/badge/MCP%20Apps%20SEP--1865-000000?style=for-the-badge)](https://modelcontextprotocol.io/community/seps/1865-mcp-apps-interactive-user-interfaces-for-mcp)

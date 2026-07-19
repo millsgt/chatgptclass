@@ -47,10 +47,10 @@
 
 ## Teaching Points
 
-- **Extensibility**: Show how easy it is to add new cities or weather properties
+- **Extensibility**: Show how to add new cities or weather properties
 - **Protocol**: Explain the request/response pattern
-- **Real-world Use**: Discuss how this could connect to real weather APIs
-- **Error Handling**: Demonstrate robustness with invalid inputs
+- **Real-world Use**: Discuss how this could connect to a real weather API
+- **Error Handling**: Send an invalid input and show the graceful miss path
 
 ## Troubleshooting
 

@@ -1,6 +1,6 @@
 # Hands-On Labs
 
-This directory holds the four hands-on labs for the course, one per teaching hour. Each lab is self-contained and followable in about 5-10 minutes, and each maps to a segment in `course-plan-may-2026.md`.
+This directory holds the four hands-on labs for the course, one per teaching hour. Each lab is self-contained and followable in about 5-10 minutes, and each maps to a segment in `course-plan-july-2026.md`.
 
 ## Structure
 

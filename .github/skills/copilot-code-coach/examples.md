@@ -1,4 +1,4 @@
-# GitHub Copilot Code Coach — Examples & Invocation Guide
+# GitHub Copilot Code Coach - Examples and Invocation Guide
 
 A reference card for students learning to use the `copilot-code-coach` skill inside VS Code.
 
@@ -31,7 +31,7 @@ Copilot Code Coach:
   Calls the OpenAI API to fetch the etymology of a name entered by the user.
 
   ### Block-by-Block Walkthrough
-  **Block 1 — get_etymology()**
+  **Block 1 - get_etymology()**
   - Does: Sends a system + user message pair to the GPT model and returns the reply.
   - Why: The system message primes the model to answer only as an etymology specialist,
     reducing off-topic responses.
@@ -55,7 +55,7 @@ create a novice/practitioner/expert drill for SQL joins
 User: generate practice exercises for Python error handling
 
 Copilot Code Coach:
-  ### Novice Exercise — Spot the Gap
+  ### Novice Exercise - Spot the Gap
   The function below has no error handling. Add a try/except block so that
   a missing file prints a friendly message instead of crashing.
 
@@ -93,7 +93,7 @@ Copilot Code Coach:
   **Line**: 42
   **What**: User input is concatenated directly into an SQL string.
   **Why it matters**: An attacker can terminate the query and inject arbitrary SQL
-    (OWASP A03:2021 — Injection).
+    (OWASP A03:2021 - Injection).
   **Improved version**:
   ```python
   cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
@@ -114,7 +114,7 @@ I'm getting [error] - walk me through it
 
 **Example session**
 ```
-User: debug with me — I'm getting KeyError: 'salary' on line 18
+User: debug with me - I'm getting KeyError: 'salary' on line 18
 
 Copilot Code Coach:
   Let's narrow this down together.
@@ -178,7 +178,7 @@ Copilot Code Coach:
   behaviour before or after it runs, without modifying the original function's body.
 
   **Mental model**: Think of a decorator like a TSA security checkpoint before a
-  flight gate — every passenger (function call) passes through the same screening
+  flight gate. Every passenger (function call) passes through the same screening
   (wrapper logic) before reaching their destination (the original function).
 
   **Minimal working example**:
@@ -204,7 +204,7 @@ Copilot Code Coach:
 
 ## Tips for Learners
 
-- **Select code before invoking** — the skill uses your selection as context.
-- **Be specific about your level** — "I'm new to Python" vs "I know Python but not async".
-- **Ask follow-up questions freely** — the skill is designed for conversation, not one-shot answers.
+- **Select code before invoking.** The skill uses your selection as context.
+- **Be specific about your level.** "I'm new to Python" vs "I know Python but not async".
+- **Ask follow-up questions freely.** The skill is built for conversation, not one-shot answers.
 - **Use the sample files** in `.github/skills/copilot-code-coach/sample-code/` as playground targets.

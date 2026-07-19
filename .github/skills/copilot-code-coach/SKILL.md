@@ -33,7 +33,7 @@ Activate this skill when the user says any of the following (or close variants):
 
 ---
 
-## Mode 1 — Explain Mode
+## Mode 1 - Explain Mode
 
 **Goal**: Turn any code selection into a plain-English narrative a 14-year-old could follow,
 then layer in the "why it was written this way" for the professional learner.
@@ -54,7 +54,7 @@ then layer in the "why it was written this way" for the professional learner.
 [one sentence]
 
 ### Block-by-Block Walkthrough
-**Block 1 — [name]**
+**Block 1 - [name]**
 - Does: ...
 - Why: ...
 - If removed: ...
@@ -74,7 +74,7 @@ Think of this code like [analogy]:
 
 ---
 
-## Mode 2 — Exercise Generator
+## Mode 2 - Exercise Generator
 
 **Goal**: Create 3 leveled practice exercises (Novice / Practitioner / Expert) based on
 the concept or code in context.
@@ -94,7 +94,7 @@ the concept or code in context.
 
 ---
 
-## Mode 3 — Teaching Review
+## Mode 3 - Teaching Review
 
 **Goal**: Code review that teaches rather than just fixes. Every suggestion must include
 a "because" clause explaining the underlying principle.
@@ -125,7 +125,7 @@ a "because" clause explaining the underlying principle.
 
 ---
 
-## Mode 4 — Guided Debug
+## Mode 4 - Guided Debug
 
 **Goal**: Walk the learner through finding and fixing a bug without revealing the answer
 immediately - Socratic method, not answer machine.
@@ -146,7 +146,7 @@ immediately - Socratic method, not answer machine.
 
 ---
 
-## Mode 5 — Refactor Narrative
+## Mode 5 - Refactor Narrative
 
 **Goal**: Refactor code and produce a side-by-side narrative explaining every change.
 
@@ -168,7 +168,7 @@ immediately - Socratic method, not answer machine.
 
 ---
 
-## Mode 6 — Concept Deep-Dive
+## Mode 6 - Concept Deep-Dive
 
 **Goal**: When the user says "teach me about [X]", deliver a structured mini-lesson.
 

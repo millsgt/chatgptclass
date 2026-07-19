@@ -21,7 +21,7 @@ Use the GitHub Copilot coding agent (GA) to resolve an issue end-to-end from wit
      ```
 2. **Assign to Copilot**
    - In the issue sidebar, set **Assignees** to `@copilot` (type "copilot" in the assignee search).
-   - The coding agent spins up a cloud environment, plans the change, and opens a pull request on a `copilot/*` branch.
+   - The coding agent starts a cloud environment, plans the change, and opens a pull request on a `copilot/*` branch.
 3. **Watch the PR appear**
    - Navigate to **Pull Requests**. Within 1-3 minutes a new PR will appear.
    - Review the PR description -- the agent explains its plan, files changed, and test coverage.
@@ -37,7 +37,7 @@ Use the GitHub Copilot coding agent (GA) to resolve an issue end-to-end from wit
      ```
    - Submit the review with **Request changes**.
 5. **Watch the agent respond**
-   - Copilot picks up the review comment, updates the `copilot/*` branch, and pushes a new commit.
+   - Copilot reads the review comment, updates the `copilot/*` branch, and pushes a new commit.
    - Verify both `/health` and `/version` endpoints are present in the updated diff.
 6. **Approve and merge**
    - Once satisfied, approve the PR and merge. The issue auto-closes via the linked PR.
