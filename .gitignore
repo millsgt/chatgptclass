@@ -26,9 +26,4 @@ package-lock.json
 Thumbs.db
 
 # PowerPoint lock files (open-in-app temp artifacts)
-~$warner-copilot.pptx
-~$warner-chatgpt-github-copilot.pptx
-~$warner-chatgpt-github-copilot-march-2026.pptx
-~$warner-chatgpt-github-copilot-may-2026.pptx
-~$warner-chatgpt-github-copilot-may-2026-v2.pptx
-~$warner-chatgpt-github-copilot-july-2026.pptx
+~$*.pptx
